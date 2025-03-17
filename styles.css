@@ -33,6 +33,10 @@ h1 {
   align-items: flex-end;
 }
 
+.entries {
+  align-items: center;
+}
+
 label {
   font-weight: bold;
 }

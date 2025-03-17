@@ -16,7 +16,7 @@ function playRound(userChoice) {
 
 function determineWinner(player1, player2) {
   if (player1 == player2) {
-    return "tie"
+    return "Tie"
   }
 
   if (player1 == "rock") {
@@ -40,6 +40,19 @@ function updateLabels(userChoice, cpuChoice, winner) {
 
   userLabel.textContent = userChoice
   cpuLabel.textContent = cpuChoice
-
   winnerLabel.textContent = winner
+
+  background = "white"
+  switch (winner) {
+    case "User":
+      background = "limegreen"
+      break
+    case "CPU":
+      background = "#ee6e5b"
+      break
+    case "Tie":
+      background = "skyblue"
+      break
+  }
+  winnerLabel.style.backgroundColor = background
 }
