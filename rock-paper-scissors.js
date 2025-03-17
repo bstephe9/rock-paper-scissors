@@ -1,21 +1,16 @@
-// Rock, paper, scissors
-
 const choices = ["rock", "paper", "scissors"];
 
-const cpuChoice = choices[Math.floor(Math.random() * choices.length)];
+const buttons = document.querySelectorAll(".option")
 
-let userChoice = prompt("Enter a number. 1 = rock, 2 = paper, 3 = scissors: ");
-userChoice = choices[userChoice];
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    playRound(e.target.textContent.toLowerCase())
+  })
+})
 
-winner = determineWinner(userChoice, cpuChoice)
+function playRound(userChoice) {
 
-winString = `
-User: ${userChoice}\n
-Cpu: ${cpuChoice}\n
-Winner: ${winner}\n
-`
-
-alert(winString)
+}
 
 function determineWinner(player1, player2) {
   if (player1 == player2) {
