@@ -1,7 +1,6 @@
 const choices = ["rock", "paper", "scissors"]
 
 const buttons = document.querySelectorAll(".option")
-
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     playRound(e.target.textContent.toLowerCase())
@@ -9,7 +8,10 @@ buttons.forEach((button) => {
 })
 
 function playRound(userChoice) {
-
+  const randomIndex = Math.floor(Math.random() * choices.length)
+  const cpuChoice = choices[randomIndex]
+  winner = determineWinner(userChoice, cpuChoice)
+  updateLabels(userChoice, cpuChoice, winner)
 }
 
 function determineWinner(player1, player2) {
@@ -18,15 +20,26 @@ function determineWinner(player1, player2) {
   }
 
   if (player1 == "rock") {
-    if (player2 == "scissors") return "player1"
-    else if (player2 == "paper") return "player2"
+    if (player2 == "scissors") return "User"
+    else if (player2 == "paper") return "CPU"
   }
   else if (player1 == "paper") {
-    if (player2 == "rock") return "player1"
-    else if (player2 == "scissors") return "player2"
+    if (player2 == "rock") return "User"
+    else if (player2 == "scissors") return "CPU"
   }
   else if (player1 == "scissors") {
-    if (player2 == "paper") return "player1"
-    else if (player2 == "rock") return "player2"
+    if (player2 == "paper") return "User"
+    else if (player2 == "rock") return "CPU"
   }
+}
+
+function updateLabels(userChoice, cpuChoice, winner) {
+  const userLabel = document.querySelector("#user")
+  const cpuLabel = document.querySelector("#cpu")
+  const winnerLabel = document.querySelector("#winner")
+
+  userLabel.textContent = userChoice
+  cpuLabel.textContent = cpuChoice
+
+  winnerLabel.textContent = winner
 }
