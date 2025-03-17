@@ -7,10 +7,17 @@ buttons.forEach((button) => {
   })
 })
 
+let winCount = 0
+let loseCount = 0
+let tieCount = 0
+let roundCount = 0
+
 function playRound(userChoice) {
+  roundCount++
   const randomIndex = Math.floor(Math.random() * choices.length)
   const cpuChoice = choices[randomIndex]
   winner = determineWinner(userChoice, cpuChoice)
+  updateCounts(winner)
   updateLabels(userChoice, cpuChoice, winner)
 }
 
@@ -33,14 +40,37 @@ function determineWinner(player1, player2) {
   }
 }
 
+function updateCounts(winner) {
+  switch (winner) {
+    case "User":
+      winCount++
+      break
+    case "CPU":
+      loseCount++
+      break
+    case "Tie":
+      tieCount++
+      break
+  }
+}
+
 function updateLabels(userChoice, cpuChoice, winner) {
   const userLabel = document.querySelector("#user")
   const cpuLabel = document.querySelector("#cpu")
   const winnerLabel = document.querySelector("#winner")
+  const winCountLabel = document.querySelector("#wins")
+  const loseCountLabel = document.querySelector("#losses")
+  const tieCountLabel = document.querySelector("#ties")
+  const roundCountLabel = document.querySelector("#rounds")
 
   userLabel.textContent = userChoice
   cpuLabel.textContent = cpuChoice
   winnerLabel.textContent = winner
+
+  winCountLabel.textContent = `Wins: ${winCount}`
+  loseCountLabel.textContent = `Losses: ${loseCount}`
+  tieCountLabel.textContent = `Ties: ${tieCount}`
+  roundCountLabel.textContent = `Rounds: ${roundCount}`
 
   background = "white"
   switch (winner) {
